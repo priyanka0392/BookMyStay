@@ -1,28 +1,31 @@
-package oncourse.model;
+package BookMyStay.model;
 
 import javax.persistence.*;
 import java.util.List;
 
 
 @Entity
-//@Table(name = "user_details")
+@Table(name = "user_details")
 public class UserDetails {
 
     @Id
     @GeneratedValue
+    @Column(name = "user_id")
     private Integer id;
-  //  @Column(name = "first_name")
+    @Column(name = "first_name")
     private String userFname;
-  //  @Column(name = "last_name")
+    @Column(name = "last_name")
     private String userLname;
-  //  @Column(name = "user_email")
+    @Column(name = "user_email")
     private String userEmail;
-  //  @Column(name="user_password")
+    @Column(name="user_password")
     private String userPassword;
-  //  @Column(name = "security_question")
+    @Column(name = "security_question")
     private Integer securityQuestion;
-  //  @Column(name = "security_answer")
+    @Column(name = "security_answer")
     private String securityAnswer;
+    @OneToMany(mappedBy = "user")
+    private List<Reservation> reservationList;
 
     @Embedded
     private UserAddress address;
@@ -98,6 +101,19 @@ public class UserDetails {
         this.address = address;
     }
 
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
 
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
 
+    public List<SecurityCard> getSecurityCard() {
+        return securityCard;
+    }
+
+    public void setSecurityCard(List<SecurityCard> securityCard) {
+        this.securityCard = securityCard;
+    }
 }

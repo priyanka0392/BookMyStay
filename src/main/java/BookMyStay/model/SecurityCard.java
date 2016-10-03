@@ -1,4 +1,4 @@
-package oncourse.model;
+package BookMyStay.model;
 
 import javax.persistence.*;
 
@@ -24,11 +24,11 @@ public class SecurityCard {
     @Column(name = "card_zipcode")
     private String zipcode;
 
-
+    @OneToOne
+    private Payment payment;
 
     @ManyToOne
     private UserDetails user;
-
 
     public SecurityCard() {
 
@@ -98,7 +98,19 @@ public class SecurityCard {
         this.zipcode = zipcode;
     }
 
+    public UserDetails getUser() {
+        return user;
+    }
 
+    public void setUser(UserDetails user) {
+        this.user = user;
+    }
 
+    public Payment getPayment() {
+        return payment;
+    }
 
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
 }
